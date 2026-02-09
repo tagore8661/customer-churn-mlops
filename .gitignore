@@ -1,6 +1,11 @@
-data/
-models/*.pkl
+#data/
+data/churn_data.csv
+#models/*.pkl
+models/churn_model.pkl
 *.pyc
 __pycache__/
 .dvc/cache
 .dvc/tmp
+
+/config.local
+/tmp
