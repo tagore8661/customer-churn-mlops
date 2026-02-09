@@ -1,0 +1,35 @@
+# Customer Churn MLOps - ArgoCD Application Configuration
+# This file defines the ArgoCD application for GitOps deployment
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kserve
+  namespace: argocd
+  labels:
+    app: churn-prediction
+    component: gitops
+spec:
+  # ArgoCD project configuration
+  project: default
+  
+  # Source repository configuration
+  source:
+    repoURL: https://github.com/tagore8661/customer-churn-mlops.git
+    targetRevision: mlops  # Branch to monitor for changes
+    path: k8s  # Directory containing Kubernetes manifests
+    
+  # Destination cluster configuration
+  destination:
+    server: https://kubernetes.default.svc  # Internal Kubernetes API
+    namespace: churn  # Target namespace for deployment
+    
+  # Sync policy for automated deployment
+  syncPolicy:
+    automated:
+      prune: true  # Remove resources that are no longer in Git
+      selfHeal: true  # Automatically fix drift from Git state
+    syncOptions:
+    - CreateNamespace=true  # Create namespace if it doesn't exist
+    - PrunePropagationPolicy=foreground  # Safe resource deletion
+    - PruneLast=true  # Prune resources after sync
