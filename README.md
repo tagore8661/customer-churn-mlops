@@ -84,3 +84,15 @@ curl -X POST "http://localhost:8000/predict" \
   "churn_probability": 0.28
 }
 ```
+
+---
+
+***📌 NOTE:***
+## 🌿 Repository Branches
+
+This repository contains `2 branches`, each with Local development setup and Automated CI/CD pipeline:
+
+-  **[main](https://github.com/tagore8661/customer-churn-mlops)**: Local development setup with synthetic data generation, model training, and FastAPI service
+-  **[mlops](https://github.com/tagore8661/customer-churn-mlops/tree/mlops)**: Automated CI/CD pipeline with GitHub Actions, model versioning, and S3 storage
+    - *Purpose: Production MLOps with real-world automated deployment pipeline*
+    - *Contains: Complete infrastructure - CI/CD automation, containerization, Kubernetes orchestration, and GitOps*
